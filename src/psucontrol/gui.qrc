@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="fonts">
+    <file alias="7seg.ttf">resources/DSEG7ClassicMini-Bold.ttf</file>
+    <file alias="14seg.ttf">resources/DSEG14ClassicMini-Bold.ttf</file>
+  </qresource>
+  <qresource prefix="graphics">
+    <file alias="psucontrol.png">resources/psucontrol.png</file>
+    <file alias="error48.png">resources/error48.png</file>
+  </qresource>
+</RCC>

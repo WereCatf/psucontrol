@@ -1,0 +1,51 @@
+name: Create a release
+
+on:
+    workflow_dispatch: # allows to run the workflow manually from the Actions tab
+    push:
+        tags:
+            - v[0-9]+.[0-9]+.[0-9]+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v5
+        with:
+          github-token: ${{ secrets.PAT }}
+          output-file: "false"
+          git-url: "gitea.elektrik.link"
+          skip-commit: "true"
+          skip-tag: "true"
+          git-user-name: "Nita Vesa"
+          git-user-email: "nita.vesa@outlook.com"
+          skip-version-file: "true"
+          fallback-version: "${{ github.ref_name }}"
+          skip-bump: "true"
+      - name: Create Release
+        uses: akkuman/gitea-release-action@v1
+        with:
+          name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
+          token: ${{ secrets.PAT }}
+
+      # - name: Commit CHANGELOG.md
+      #   uses: stefanzweifel/git-auto-commit-action@v7
+      #   with:
+      #     branch: main
+      #     commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
+      #     file_pattern: CHANGELOG.md
+      # - name: Upload distributions
+      #   uses: actions/gitea-upload-artifact@v4
+      #   with:
+      #     name: release-dists
+      #     path: dist/
+      #     retention-days: 5

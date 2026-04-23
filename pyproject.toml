@@ -1,0 +1,44 @@
+[project]
+name = "psucontrol"
+version = "0.5.0"
+description = "An application for controlling a Velleman LABPS3005D bench PSU and any compatible ones."
+authors = [{ name = "Nita Vesa", email = "nita.vesa@outlook.com" }]
+readme = "README.md"
+requires-python = ">=3.13,<3.15"
+dependencies = [
+    "pyside6 (>=6.11.0,<7.0.0)",
+    "pyserial (>=3.5,<4.0)",
+    "rich (>=15.0.0,<16.0.0)",
+    "textual (>=8.2.3,<9.0.0)",
+    "xdg-base-dirs (>=6.0.2,<7.0.0)",
+    "lcdlabel (>=0.8.0,<=1.0.0)",
+    "indicatorlabel (>=0.9.0,<=1.0.0)",
+]
+license = "BSD-3-Clause"
+
+[tool.poetry]
+packages = [{ include = "psucontrol", from = "src" }]
+exclude = [
+    "src/psucontrol/resources/**",
+    "src/psucontrol/*.ui",
+    "src/psucontrol/*.qrc",
+    "doc/*.pdf",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.scripts]
+psucontrol_gui = 'psucontrol.gui:main'
+
+[tool.pyside6-project]
+files = [
+    "src/psucontrol/gui.py",
+    "src/psucontrol/mainWindow.ui",
+    "src/psucontrol/limitDialog.ui",
+    "src/psucontrol/errorDialog.ui",
+    "src/psucontrol/preferencesDialog.ui",
+    "src/psucontrol/aboutDialog.ui",
+    "src/psucontrol/gui.qrc",
+]
