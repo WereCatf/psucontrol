@@ -48,6 +48,7 @@ class Ui_AboutDialog(object):
         self.textEdit = QTextEdit(AboutDialog)
         self.textEdit.setObjectName(u"textEdit")
         self.textEdit.setReadOnly(True)
+        self.textEdit.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
 
         self.horizontalLayout.addWidget(self.textEdit)
 
@@ -80,8 +81,10 @@ class Ui_AboutDialog(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Some jibber-jabber about the app.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PSUcontrol, an application for controlling the Velleman LABPS3005D and compatible bench power supplies.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Source code available at <a href=\"https://github.com/WereCatf/psucontrol\"><span style=\" text-decoration: underline; color:#ff95ca;\">https://github.com/WereCatf/psucont"
+                        "rol</span></a></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright(C)2026 Slippin' Jimmy</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright(C)2026 Nita Vesa</p></body></html>", None))
     # retranslateUi
 
