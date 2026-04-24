@@ -103,6 +103,8 @@ class MainWindow(QtWidgets.QMainWindow):
             self.preferencesDialogCustomPortsListHandler
         )
 
+        if "windowPosition" in configData:
+            self.move(*configData["windowPosition"])
         self.psuThread.start()
 
     def aboutDialogHandler(self):
@@ -200,6 +202,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.psuThread.quit()
             if not self.psuThread.wait(2000):
                 self.psuThread.terminate()
+        self._configData["windowPosition"] = (self.x(), self.y())
         saveConfig(self._configData)
         event.accept()
 
