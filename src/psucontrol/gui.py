@@ -124,7 +124,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 for x in range(self._preferencesDialogUi.CustomPortsList.count())
             ]
             self._configData["customSerialPorts"] = items.copy()
-            print(self._configData["customSerialPorts"])
             serial_port_info = QtSerialPort.QSerialPortInfo()
             items += [port.portName() for port in serial_port_info.availablePorts()]
             items = list(dict.fromkeys(items))
@@ -135,7 +134,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.serialPortBox.addItems(items)
             if currentPort in items:
                 self.ui.serialPortBox.setCurrentText(currentPort)
-            print(self._configData["customSerialPorts"])
 
     def preferencesDialogAddButtonHandler(self):
         if (
@@ -434,7 +432,6 @@ class DeviceWorker(QObject):
             else:
                 self._psu.connect()
         except serial.SerialException as e:
-            print(f"Error occurred while connecting: {e}")
             self.connectionStatusChanged.emit("Disconnected", ())
             self.psuError.emit(str(e))
             return
