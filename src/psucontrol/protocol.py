@@ -35,15 +35,12 @@ class PsuDevice:
         self._maximumCurrent = 5.0
 
     def connect(self):
-        try:
-            self._connection.open()
-        except serial.SerialException as e:
-            print(f"Error connecting to PSU: {e}")
-            raise
+        self._connection.open()
+        self._identify()
 
     def _identify(self):
         self._idn = self.identification
-        idnRegex = r"(VELLEMAN|KORAD|RND|STAMOS|TENMA)(.*?)(V\d*\.\d*)?$"
+        idnRegex = r"^(VELLEMAN|KORAD|RND|STAMOS|TENMA)(.*?)(V\d*\.\d*)?$"
         results = re.findall(idnRegex, self._idn)
         if len(results):
             results = results[0]
@@ -51,6 +48,10 @@ class PsuDevice:
             self._model = results[1]
             if len(results) > 2:
                 self._version = results[2]
+        else:
+            raise RuntimeError(
+                "Reply from PSU did not match expected format, not a supported device!"
+            )
 
     def isConnected(self):
         return self._connection.is_open
@@ -79,15 +80,11 @@ class PsuDevice:
     @property
     def maximumVoltage(self) -> float:
         """The maximum voltage that the PSU can output in volts."""
-        if not self._idn:
-            self._identify()
         return self._maximumVoltage
 
     @property
     def maximumCurrent(self) -> float:
         """The maximum current that the PSU can output in amps."""
-        if not self._idn:
-            self._identify()
         return self._maximumCurrent
 
     @property
@@ -174,22 +171,16 @@ class PsuDevice:
     @property
     def manufacturer(self) -> str:
         """The manufacturer of the PSU."""
-        if not self._idn:
-            self._identify()
         return self._manufacturer
 
     @property
     def model(self) -> str:
         """The model of the PSU."""
-        if not self._idn:
-            self._identify()
         return self._model
 
     @property
     def version(self) -> str:
         """The version of the PSU."""
-        if not self._idn:
-            self._identify()
         return self._version
 
     def recall(self, memorySlot: int):

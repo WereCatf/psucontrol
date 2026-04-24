@@ -441,6 +441,10 @@ class DeviceWorker(QObject):
             self.connectionStatusChanged.emit("Disconnected", ())
             self.psuError.emit(str(e))
             return
+        except RuntimeError as e:
+            self.connectionStatusChanged.emit("Disconnected", ())
+            self.psuError.emit(str(e))
+            return
         if self._simulatePsu:
             self.connectionStatusChanged.emit(
                 "Connected",
