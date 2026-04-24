@@ -26,6 +26,9 @@ def readConfig():
     if (configPath / "config.json").exists():
         with open(configPath / "config.json", "r") as f:
             config.update(json.load(f))
+            config["customSerialPorts"] = [
+                port for port in config["customSerialPorts"] if port.strip()
+            ]
     return config
 
 
@@ -120,7 +123,7 @@ class MainWindow(QtWidgets.QMainWindow):
         )
         if self._preferencesDialog.exec_():
             items = [
-                self._preferencesDialogUi.CustomPortsList.item(x).text()
+                self._preferencesDialogUi.CustomPortsList.item(x).text().strip()
                 for x in range(self._preferencesDialogUi.CustomPortsList.count())
             ]
             self._configData["customSerialPorts"] = items.copy()
@@ -129,7 +132,7 @@ class MainWindow(QtWidgets.QMainWindow):
             items = list(dict.fromkeys(items))
             currentPort = self._configData["selectedSerialPort"]
             self.ui.serialPortBox.clear()
-            if currentPort not in items:
+            if currentPort and currentPort not in items:
                 items.append(currentPort)
             self.ui.serialPortBox.addItems(items)
             if currentPort in items:
@@ -137,19 +140,19 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def preferencesDialogAddButtonHandler(self):
         if (
-            self._preferencesDialogUi.lineEdit.text()
-            and self._preferencesDialogUi.lineEdit.text()
+            self._preferencesDialogUi.lineEdit.text().strip()
+            and self._preferencesDialogUi.lineEdit.text().strip()
             not in self._configData["customSerialPorts"]
         ):
             self._preferencesDialogUi.CustomPortsList.addItem(
-                self._preferencesDialogUi.lineEdit.text()
+                self._preferencesDialogUi.lineEdit.text().strip()
             )
 
     def preferencesDialogRemoveButtonHandler(self):
         self._preferencesDialogUi.CustomPortsList.takeItem(
             self._preferencesDialogUi.CustomPortsList.row(
                 self._preferencesDialogUi.CustomPortsList.findItems(
-                    self._preferencesDialogUi.lineEdit.text(),
+                    self._preferencesDialogUi.lineEdit.text().strip(),
                     Qt.MatchFlag.MatchExactly,
                 )[0]
             )
@@ -157,15 +160,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self._preferencesDialogUi.lineEdit.setText("")
 
     def preferencesDialoglineEditHandler(self, text):
-        if text:
+        if text.strip():
             self._preferencesDialogUi.AddButton.setEnabled(True)
             if (
                 self._preferencesDialogUi.CustomPortsList.findItems(
-                    text,
+                    text.strip(),
                     Qt.MatchFlag.MatchExactly,
                 )
                 and self._preferencesDialogUi.CustomPortsList.findItems(
-                    text,
+                    text.strip(),
                     Qt.MatchFlag.MatchExactly,
                 )[0]
             ):
