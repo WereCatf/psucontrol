@@ -1,3 +1,5 @@
+import os
+
 from .__init__ import __version__
 import random
 import sys
@@ -54,7 +56,8 @@ class MainWindow(QtWidgets.QMainWindow):
         QtGui.QFontDatabase.addApplicationFont(":/fonts/14seg.ttf")
         serial_port_info = QtSerialPort.QSerialPortInfo()
         available_ports = configData["customSerialPorts"] + [
-            port.portName() for port in serial_port_info.availablePorts()
+            port.portName() if os.name == "nt" else port.systemLocation()
+            for port in serial_port_info.availablePorts()
         ]
         available_ports = list(dict.fromkeys(available_ports))
         self.ui.serialPortBox.addItems(available_ports)
