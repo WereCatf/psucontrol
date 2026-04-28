@@ -74,6 +74,8 @@ class PsuDevice:
             exclusive=True,
             do_not_open=True,
         )
+        if "://" not in port:
+            self._connection.write_timeout = 1
 
     def setPort(self, port: str):
         self.port = port
