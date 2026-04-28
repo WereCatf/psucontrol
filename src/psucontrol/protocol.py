@@ -292,7 +292,9 @@ class PsuDevice:
         waitTime: float = 0.0,
     ) -> str:
         if not self.isConnected():
-            raise ConnectionError("Not connected to PSU")
+            raise ConnectionError(
+                f"Cannot issue command '{command}', not connected to PSU!"
+            )
         retries = 0
         while retries < 5:
             self._connection.write(command.encode())
@@ -306,7 +308,9 @@ class PsuDevice:
             if len(response) and (not replyLength or len(response) == replyLength):
                 return response
             retries += 1
-        raise TimeoutError("No response from PSU")
+        raise TimeoutError(
+            f"No response from PSU for command '{command}' after 5 attempts"
+        )
 
     def close(self):
         """Close the connection to the PSU."""

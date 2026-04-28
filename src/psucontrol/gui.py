@@ -441,6 +441,11 @@ class DeviceWorker(QObject):
             self.psuError.emit(str(e))
             self._psu.close()
             return
+        except ConnectionAbortedError as e:
+            self.connectionStatusChanged.emit("Disconnected", ())
+            self.psuError.emit(str(e))
+            self._psu.close()
+            return
         if self._simulatePsu:
             self.connectionStatusChanged.emit(
                 "Connected",
@@ -531,11 +536,15 @@ class DeviceWorker(QObject):
                     value = getattr(self._psu, property)
                     psuData[property] = value
                 self.updatedData.emit(psuData)
-            except ConnectionError:
+            except ConnectionError as e:
+                self.psuError.emit(str(e))
                 self.disconnect_device()
-            except TimeoutError:
+            except TimeoutError as e:
                 self.disconnect_device()
-                self.psuError.emit("Timeout communicating with the PSU, disconnecting.")
+                self.psuError.emit(str(e))
+            except serial.SerialTimeoutException as e:
+                self.disconnect_device()
+                self.psuError.emit(str(e))
             finally:
                 self._busyPolling = False
 
@@ -553,11 +562,15 @@ class DeviceWorker(QObject):
             try:
                 psuFunction = getattr(self._psu, functionName)
                 psuFunction(value)
-            except ConnectionError:
+            except ConnectionError as e:
+                self.psuError.emit(str(e))
                 self.disconnect_device()
-            except TimeoutError:
+            except TimeoutError as e:
                 self.disconnect_device()
-                self.psuError.emit("Timeout communicating with the PSU, disconnecting.")
+                self.psuError.emit(str(e))
+            except serial.SerialTimeoutException as e:
+                self.disconnect_device()
+                self.psuError.emit(str(e))
             finally:
                 pass
         self.busy.emit(False)
