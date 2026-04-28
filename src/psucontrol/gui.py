@@ -428,16 +428,18 @@ class DeviceWorker(QObject):
         try:
             if self._simulatePsu:
                 self._simulatedPsuConnected = True
-                time.sleep(2)
+                time.sleep(1)
             else:
                 self._psu.connect()
         except serial.SerialException as e:
             self.connectionStatusChanged.emit("Disconnected", ())
+            self._psu.close()
             self.psuError.emit(str(e))
             return
         except RuntimeError as e:
             self.connectionStatusChanged.emit("Disconnected", ())
             self.psuError.emit(str(e))
+            self._psu.close()
             return
         if self._simulatePsu:
             self.connectionStatusChanged.emit(

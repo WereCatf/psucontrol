@@ -49,6 +49,7 @@ class PsuDevice:
             if len(results) > 2:
                 self._version = results[2]
         else:
+            self.close()
             raise RuntimeError(
                 "Reply from PSU did not match expected format, not a supported device!"
             )
