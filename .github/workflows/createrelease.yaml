@@ -6,17 +6,105 @@ on:
         tags:
             - v[0-9]+.[0-9]+.[0-9]+
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'deploy'
+  cancel-in-progress: true
+
 jobs:
   build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            arch: x64
+            suffix: '.bin'
+          - os: ubuntu-24.04-arm
+            arch: arm64
+            suffix: '.bin'
+          - os: windows-latest
+            arch: x64
+            suffix: '.exe'
+          - os: windows-11-arm
+            arch: arm64
+            suffix: '.exe'
+          - os: macos-latest
+            arch: arm64
+            suffix: ''
+          - os: macos-15-intel
+            arch: x64
+            suffix: ''
 
+    steps:
+      - name: Check out repository.
+        uses: actions/checkout@v5
+      - name: Install Python.
+        uses: actions/setup-python@v5
+        with:
+            python-version: '3.14'
+            architecture: ${{ matrix.arch }}
+
+      - name: Install requirements.
+        working-directory: .
+        run: python -m pip install --upgrade pip && pip install .
+
+      - name: Install Linux-only dependencies.
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt update && sudo apt -y install patchelf ccache upx-ucl
+
+      - name: Install and configure Nuitka
+        uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script-name: src/psucontrol
+          include-package: psucontrol
+          enable-plugins: pyside6
+          quiet: true
+          disable-console: true
+          macos-create-app-bundle: true
+          output-file: psucontrol_gui-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}${{ matrix.suffix }}
+          linux-icon: extra/psucontrol_128.png
+          windows-icon-from-ico: extra/psucontrol_128.ico
+          macos-app-icon: extra/psucontrol_128.icns
+          macos-app-name: psucontrol_gui
+          disable-cache: true
+          mode: app
+
+      - name: Upload artifacts.
+        uses: actions/upload-artifact@v7
+        with:
+          retention-days: 1
+          name: '${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}'
+          path: |
+            build/*
+            build/*.app/**/*
+            !build/*.dist
+            !build/*.build
+            !build/*.onefile-build
+
+  release:
+    needs: build
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
         with:
           ref: main
+      - name: Download all artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: artifacts/
+          skip-decompress: true
       - name: Update CHANGELOG
         id: changelog
         uses: requarks/changelog-action@v1
@@ -30,3 +118,4 @@ jobs:
           name: ${{ github.ref_name }}
           body: ${{ steps.changelog.outputs.changes }}
           token: ${{ github.token }}
+          artifacts: artifacts/**/*

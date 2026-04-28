@@ -6,46 +6,135 @@ on:
         tags:
             - v[0-9]+.[0-9]+.[0-9]+
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'deploy'
+  cancel-in-progress: true
+
 jobs:
   build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            arch: x64
+            suffix: '.bin'
+          # - os: ubuntu-24.04-arm
+          #   arch: arm64
+          #   suffix: '.bin'
+          # - os: windows-latest
+          #   arch: x64
+          #   suffix: '.exe'
+          # - os: windows-latest
+          #   arch: arm64
+          #   suffix: '.exe'
+          # - os: macos-latest
+          #   arch: arm64
+          #   suffix: ''
+          # - os: macos-13
+          #   arch: x64
+          #   suffix: ''
 
+    steps:
+      - name: Check out repository.
+        uses: actions/checkout@v5
+      - name: Install Python.
+        uses: actions/setup-python@v5
+        with:
+            python-version: '3.14'
+            architecture: ${{ matrix.arch }}
+
+      - name: Install requirements.
+        working-directory: .
+        run: python -m pip install --upgrade pip && pip install .
+
+      - name: Install Linux-only dependencies.
+        if: matrix.os == 'ubuntu-latest'
+        run: apt update && apt -y install patchelf ccache upx-ucl
+
+      - name: Install and configure Nuitka
+        uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script-name: src/psucontrol
+          include-package: psucontrol
+          enable-plugins: pyside6
+          quiet: true
+          standalone: true
+          disable-console: true
+          macos-create-app-bundle: true
+          output-file: psucontrol_gui${{ matrix.suffix }}
+          linux-icon: extra/psucontrol_128.png
+          windows-icon-from-ico: extra/psucontrol_128.ico
+          macos-app-icon: extra/psucontrol_128.icns
+          macos-app-name: psucontrol_gui
+          disable-cache: true
+
+      - name: List files
+        working-directory: .
+        run: ls -lh --color . && ls -lh --color build/
+
+      - name: Upload artifacts.
+        uses: https://github.com/christopherHX/gitea-upload-artifact@v4
+        with:
+          retention-days: 1
+          name: '${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}'
+          path: |
+            build/*
+            build/*.app/**/*
+            !build/*.dist
+            !build/*.build
+            !build/*.onefile-build
+
+  release:
+    needs: build
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
         with:
           ref: main
-      - name: Conventional Changelog Action
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v5
+      - name: Download all artifacts
+        uses: https://github.com/christopherHX/gitea-download-artifact@v4
         with:
-          github-token: ${{ secrets.PAT }}
-          output-file: "false"
-          git-url: "gitea.elektrik.link"
-          skip-commit: "true"
-          skip-tag: "true"
-          git-user-name: "Nita Vesa"
-          git-user-email: "nita.vesa@outlook.com"
-          skip-version-file: "true"
-          fallback-version: "${{ github.ref_name }}"
-          skip-bump: "true"
+          path: artifacts/
+          skip-decompress: true
+      - name: Update changelog
+        id: changelog
+        uses: mikepenz/release-changelog-builder-action@v6
+        with:
+          token: ${{ secrets.PAT }}
+          commitMode: true
+          platform: "gitea"
+          baseUrl: "https://gitea.elektrik.link"
+      # - name: Conventional Changelog Action
+      #   id: changelog
+      #   uses: TriPSs/conventional-changelog-action@v5
+      #   with:
+      #     github-token: ${{ secrets.PAT }}
+      #     output-file: "false"
+      #     git-url: "gitea.elektrik.link"
+      #     skip-commit: "true"
+      #     skip-tag: "true"
+      #     git-user-name: "Nita Vesa"
+      #     git-user-email: "nita.vesa@outlook.com"
+      #     skip-version-file: "true"
+      #     fallback-version: "${{ github.ref_name }}"
+      #     skip-bump: "true"
+      #     preset: 'conventionalcommits'
       - name: Create Release
         uses: akkuman/gitea-release-action@v1
         with:
-          name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
+          name: ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.changelog }}
           token: ${{ secrets.PAT }}
-
-      # - name: Commit CHANGELOG.md
-      #   uses: stefanzweifel/git-auto-commit-action@v7
-      #   with:
-      #     branch: main
-      #     commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
-      #     file_pattern: CHANGELOG.md
-      # - name: Upload distributions
-      #   uses: actions/gitea-upload-artifact@v4
-      #   with:
-      #     name: release-dists
-      #     path: dist/
-      #     retention-days: 5
+          files: artifacts/**/*
