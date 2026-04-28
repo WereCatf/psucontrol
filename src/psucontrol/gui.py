@@ -384,12 +384,10 @@ class DeviceWorker(QObject):
     exitPollEarly: bool
     _busyPolling: bool
     _simulatePsu: bool
-    _updateStatus: bool
     _simulatedPsuConnected: bool
     _simulatedPsuOutput: bool
     _simulatedVoltageLimit: float
     _simulatedCurrentLimit: float
-    _previousStatus: dict | None
 
     def __init__(self, simulate: bool = False):
         super().__init__()
@@ -397,16 +395,12 @@ class DeviceWorker(QObject):
         self._pollingTimer = QTimer(self)
         self._pollingTimer.setInterval(60)
         self._pollingTimer.timeout.connect(self._pollingTimerHandler)
-        self._statusTimer = QTimer(self)
-        self._statusTimer.setInterval(500)
-        self._statusTimer.timeout.connect(self._statusTimerHandler)
         self.exitPollEarly = False
         self._busyPolling = False
         self._simulatePsu = simulate
         self._updateStatus = False
         self._simulatedPsuConnected = False
         self._simulatedPsuOutput = False
-        self._previousStatus = None
         self._simulatedVoltageLimit = 12.0
         self._simulatedCurrentLimit = 5.0
 
@@ -423,7 +417,7 @@ class DeviceWorker(QObject):
 
     @property
     def timerActive(self) -> bool:
-        return self._pollingTimer.isActive() or self._statusTimer.isActive()
+        return self._pollingTimer.isActive()
 
     @Slot()
     def connect_device(self, port: str):
@@ -467,16 +461,13 @@ class DeviceWorker(QObject):
                     self._psu.maximumCurrent,
                 ),
             )
-            self._previousStatus = None
 
         self.exitPollEarly = False
         self._busyPolling = False
         self._pollingTimer.start()
-        self._statusTimer.start()
 
     @Slot()
     def disconnect_device(self):
-        self._statusTimer.stop()
         self._pollingTimer.stop()
         self.exitPollEarly = True
         while self._busyPolling:
@@ -535,14 +526,7 @@ class DeviceWorker(QObject):
                 for property in properties:
                     if self.exitPollEarly:
                         return
-                    value = (
-                        getattr(self._psu, property)
-                        if property != "status"
-                        else self._previousStatus
-                    )
-                    if not self._previousStatus or self._updateStatus:
-                        value = getattr(self._psu, property)
-                        self._previousStatus = value
+                    value = getattr(self._psu, property)
                     psuData[property] = value
                 self.updatedData.emit(psuData)
             except ConnectionError:
