@@ -1,0 +1,6 @@
+[submodule "external/lcdlabel"]
+	path = external/lcdlabel
+	url = https://github.com/WereCatf/lcdlabel
+[submodule "external/indicatorlabel"]
+	path = external/indicatorlabel
+	url = https://github.com/WereCatf/indicatorlabel
