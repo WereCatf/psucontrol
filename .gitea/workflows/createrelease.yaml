@@ -65,15 +65,14 @@ jobs:
           include-package: psucontrol
           enable-plugins: pyside6
           quiet: true
-          standalone: true
           disable-console: true
-          macos-create-app-bundle: true
           output-file: psucontrol_gui${{ matrix.suffix }}
           linux-icon: extra/psucontrol_128.png
           windows-icon-from-ico: extra/psucontrol_128.ico
           macos-app-icon: extra/psucontrol_128.icns
           macos-app-name: psucontrol_gui
           disable-cache: true
+          mode: app
 
       - name: List files
         working-directory: .
@@ -116,21 +115,6 @@ jobs:
           commitMode: true
           platform: "gitea"
           baseUrl: "https://gitea.elektrik.link"
-      # - name: Conventional Changelog Action
-      #   id: changelog
-      #   uses: TriPSs/conventional-changelog-action@v5
-      #   with:
-      #     github-token: ${{ secrets.PAT }}
-      #     output-file: "false"
-      #     git-url: "gitea.elektrik.link"
-      #     skip-commit: "true"
-      #     skip-tag: "true"
-      #     git-user-name: "Nita Vesa"
-      #     git-user-email: "nita.vesa@outlook.com"
-      #     skip-version-file: "true"
-      #     fallback-version: "${{ github.ref_name }}"
-      #     skip-bump: "true"
-      #     preset: 'conventionalcommits'
       - name: Create Release
         uses: akkuman/gitea-release-action@v1
         with:

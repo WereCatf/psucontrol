@@ -67,7 +67,6 @@ jobs:
           enable-plugins: pyside6
           quiet: true
           disable-console: true
-          macos-create-app-bundle: true
           output-file: psucontrol_gui-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}${{ matrix.suffix }}
           linux-icon: extra/psucontrol_128.png
           windows-icon-from-ico: extra/psucontrol_128.ico
