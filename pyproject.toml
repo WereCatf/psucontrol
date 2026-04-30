@@ -1,18 +1,18 @@
 [project]
 name = "psucontrol"
-version = "0.6.1"
+version = "0.6.2"
 description = "An application for controlling a Velleman LABPS3005D bench PSU and any compatible ones."
 authors = [{ name = "Nita Vesa", email = "nita.vesa@outlook.com" }]
 readme = "README.md"
-requires-python = ">=3.13,<3.15"
+requires-python = ">=3.10,<3.15"
 dependencies = [
-    "pyside6 (>=6.11.0,<7.0.0)",
+    "pyside6 (>=6.10.0,<7.0.0)",
     "pyserial (>=3.5,<4.0)",
     "rich (>=15.0.0,<16.0.0)",
     "textual (>=8.2.3,<9.0.0)",
     "xdg-base-dirs (>=6.0.2,<7.0.0)",
-    "lcdlabel (>=0.8.0,<=1.0.0)",
-    "indicatorlabel (>=0.9.0,<=1.0.0)",
+    "lcdlabel (>=0.8.1,<=1.0.0)",
+    "indicatorlabel (>=0.9.1,<=1.0.0)",
 ]
 license = "BSD-3-Clause"
 
