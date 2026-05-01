@@ -24,7 +24,11 @@ from lcdlabel import LcdLabel  # noqa: F401
 def readConfig():
     configPath = xdg_config_home() / "psucontrol"
     configPath.mkdir(parents=True, exist_ok=True)
-    config = {"customSerialPorts": [], "selectedSerialPort": ""}
+    config = {
+        "customSerialPorts": [],
+        "selectedSerialPort": "",
+        "showMemoryButtons": True,
+    }
     if (configPath / "config.json").exists():
         with open(configPath / "config.json", "r") as f:
             config.update(json.load(f))
@@ -63,6 +67,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.serialPortBox.addItems(available_ports)
         if configData["selectedSerialPort"] in available_ports:
             self.ui.serialPortBox.setCurrentText(configData["selectedSerialPort"])
+        else:
+            self.ui.serialPortBox.setCurrentIndex(0)
         self.ui.connectButton.clicked.connect(self.connectButtonHandler)
 
         self.psuThread = QThread()
@@ -105,10 +111,37 @@ class MainWindow(QtWidgets.QMainWindow):
         self._preferencesDialogUi.CustomPortsList.itemSelectionChanged.connect(
             self.preferencesDialogCustomPortsListHandler
         )
+        self.ui.m1Button.clicked.connect(self.mButtonHandler)
+        self.ui.m2Button.clicked.connect(self.mButtonHandler)
+        self.ui.m3Button.clicked.connect(self.mButtonHandler)
+        self.ui.m4Button.clicked.connect(self.mButtonHandler)
+        self.ui.m5Button.clicked.connect(self.mButtonHandler)
+        self.ui.actionM_buttons.setChecked(configData["showMemoryButtons"])
+        self.adjustSize()
+        self.ui.memoryButtonWidget.hideEvent = (
+            self.doAdjustSize
+        )  # Ugly, but nothing else seems to work
 
         if "windowPosition" in configData:
             self.move(*configData["windowPosition"])
         self.psuThread.start()
+
+    def doAdjustSize(self, event):
+        self._adjustTimer = QTimer(self)
+        self._adjustTimer.setInterval(1)
+        self._adjustTimer.setSingleShot(True)
+        self._adjustTimer.timeout.connect(self.adjustSize)
+        self._adjustTimer.start()
+
+    def mButtonHandler(self, button: QtWidgets.QPushButton):
+        if not self.psuWorker.connected:
+            return
+        memorySlot = int(button.text()[1])
+        if not self.ui.saveButton.isChecked():
+            self.settingsChange.emit("recall", memorySlot)
+        else:
+            self.settingsChange.emit("save", memorySlot)
+            self.ui.saveButton.setChecked(False)
 
     def aboutDialogHandler(self):
         dialog = QtWidgets.QDialog()
@@ -206,6 +239,7 @@ class MainWindow(QtWidgets.QMainWindow):
             if not self.psuThread.wait(2000):
                 self.psuThread.terminate()
         self._configData["windowPosition"] = (self.x(), self.y())
+        self._configData["showMemoryButtons"] = self.ui.actionM_buttons.isChecked()
         saveConfig(self._configData)
         event.accept()
 
@@ -232,6 +266,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.connectButton.setText("Connect")
         self.ui.connectButton.setEnabled(True)
         self.ui.serialPortBox.setEnabled(True)
+        self.ui.m1Button.setEnabled(False)
+        self.ui.m2Button.setEnabled(False)
+        self.ui.m3Button.setEnabled(False)
+        self.ui.m4Button.setEnabled(False)
+        self.ui.m5Button.setEnabled(False)
+        self.ui.saveButton.setEnabled(False)
 
     @Slot()
     def busySignalHandler(self, busy: bool):
@@ -312,6 +352,12 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.serialPortBox.setEnabled(False)
             self.ui.powerButton.setEnabled(True)
             self.ui.powerButton.setChecked(False)
+            self.ui.m1Button.setEnabled(True)
+            self.ui.m2Button.setEnabled(True)
+            self.ui.m3Button.setEnabled(True)
+            self.ui.m4Button.setEnabled(True)
+            self.ui.m5Button.setEnabled(True)
+            self.ui.saveButton.setEnabled(True)
             if data:
                 self.ui.manufacturerLabel.setText(data[0])
                 self.ui.modelLabel.setText(data[1])
