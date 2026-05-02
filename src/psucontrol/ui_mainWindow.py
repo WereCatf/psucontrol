@@ -46,7 +46,12 @@ class Ui_MainWindow(object):
         self.actionM_buttons.setObjectName(u"actionM_buttons")
         self.actionM_buttons.setCheckable(True)
         self.actionM_buttons.setChecked(True)
-        self.actionM_buttons.setFont(font)
+        font1 = QFont()
+        self.actionM_buttons.setFont(font1)
+        self.actionPreferences = QAction(MainWindow)
+        self.actionPreferences.setObjectName(u"actionPreferences")
+        self.actionQuit = QAction(MainWindow)
+        self.actionQuit.setObjectName(u"actionQuit")
         self.actionAbout = QAction(MainWindow)
         self.actionAbout.setObjectName(u"actionAbout")
         self.centralwidget = QWidget(MainWindow)
@@ -86,24 +91,6 @@ class Ui_MainWindow(object):
         self.connectButton.setObjectName(u"connectButton")
 
         self.serialPortSettingsLayout.addWidget(self.connectButton)
-
-        self.preferencesButton = QPushButton(self.centralwidget)
-        self.preferencesButton.setObjectName(u"preferencesButton")
-        sizePolicy.setHeightForWidth(self.preferencesButton.sizePolicy().hasHeightForWidth())
-        self.preferencesButton.setSizePolicy(sizePolicy)
-        icon1 = QIcon(QIcon.fromTheme(u"document-properties"))
-        self.preferencesButton.setIcon(icon1)
-
-        self.serialPortSettingsLayout.addWidget(self.preferencesButton)
-
-        self.aboutButton = QPushButton(self.centralwidget)
-        self.aboutButton.setObjectName(u"aboutButton")
-        sizePolicy.setHeightForWidth(self.aboutButton.sizePolicy().hasHeightForWidth())
-        self.aboutButton.setSizePolicy(sizePolicy)
-        icon2 = QIcon(QIcon.fromTheme(u"dialog-information"))
-        self.aboutButton.setIcon(icon2)
-
-        self.serialPortSettingsLayout.addWidget(self.aboutButton)
 
 
         self.mainLayout.addLayout(self.serialPortSettingsLayout)
@@ -159,11 +146,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.voltageOutputLabel = LcdLabel(self.verticalFrame_2)
         self.voltageOutputLabel.setObjectName(u"voltageOutputLabel")
-        font1 = QFont()
-        font1.setFamilies([u"DSEG7 Classic Mini"])
-        font1.setPointSize(32)
-        font1.setBold(True)
-        self.voltageOutputLabel.setFont(font1)
+        font2 = QFont()
+        font2.setFamilies([u"DSEG7 Classic Mini"])
+        font2.setPointSize(32)
+        font2.setBold(True)
+        self.voltageOutputLabel.setFont(font2)
         self.voltageOutputLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.voltageOutputLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.voltageOutputLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -172,7 +159,7 @@ class Ui_MainWindow(object):
 
         self.currentOutputLabel = LcdLabel(self.verticalFrame_2)
         self.currentOutputLabel.setObjectName(u"currentOutputLabel")
-        self.currentOutputLabel.setFont(font1)
+        self.currentOutputLabel.setFont(font2)
         self.currentOutputLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.currentOutputLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.currentOutputLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -181,7 +168,7 @@ class Ui_MainWindow(object):
 
         self.powerOutputLabel = LcdLabel(self.verticalFrame_2)
         self.powerOutputLabel.setObjectName(u"powerOutputLabel")
-        self.powerOutputLabel.setFont(font1)
+        self.powerOutputLabel.setFont(font2)
         self.powerOutputLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.powerOutputLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.powerOutputLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -218,11 +205,11 @@ class Ui_MainWindow(object):
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.modelLabel.sizePolicy().hasHeightForWidth())
         self.modelLabel.setSizePolicy(sizePolicy2)
-        font2 = QFont()
-        font2.setFamilies([u"Segoe UI"])
-        font2.setPointSize(12)
-        font2.setBold(True)
-        self.modelLabel.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Segoe UI"])
+        font3.setPointSize(12)
+        font3.setBold(True)
+        self.modelLabel.setFont(font3)
         self.modelLabel.setTextFormat(Qt.TextFormat.PlainText)
         self.modelLabel.setScaledContents(False)
         self.modelLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -233,7 +220,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName(u"label")
         sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy2)
-        self.label.setFont(font2)
+        self.label.setFont(font3)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.label)
@@ -261,7 +248,7 @@ class Ui_MainWindow(object):
         palette3.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette3.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorOvp.setPalette(palette3)
-        self.indicatorOvp.setFont(font2)
+        self.indicatorOvp.setFont(font3)
         self.indicatorOvp.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.indicatorOvp.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
         self.indicatorOvp.setProperty(u"checked", False)
@@ -281,7 +268,7 @@ class Ui_MainWindow(object):
         palette4.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette4.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorOcp.setPalette(palette4)
-        self.indicatorOcp.setFont(font2)
+        self.indicatorOcp.setFont(font3)
         self.indicatorOcp.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorOcp.setProperty(u"checked", False)
         self.indicatorOcp.setProperty(u"on_color", QColor(255, 0, 0))
@@ -300,7 +287,7 @@ class Ui_MainWindow(object):
         palette5.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette5.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorCc.setPalette(palette5)
-        self.indicatorCc.setFont(font2)
+        self.indicatorCc.setFont(font3)
         self.indicatorCc.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorCc.setProperty(u"checked", False)
         self.indicatorCc.setProperty(u"on_color", QColor(255, 0, 0))
@@ -319,7 +306,7 @@ class Ui_MainWindow(object):
         palette6.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette6.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorCv.setPalette(palette6)
-        self.indicatorCv.setFont(font2)
+        self.indicatorCv.setFont(font3)
         self.indicatorCv.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorCv.setProperty(u"checked", False)
         self.indicatorCv.setProperty(u"on_color", QColor(255, 0, 0))
@@ -338,7 +325,7 @@ class Ui_MainWindow(object):
         palette7.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette7.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorLabel.setPalette(palette7)
-        self.indicatorLabel.setFont(font2)
+        self.indicatorLabel.setFont(font3)
         self.indicatorLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorLabel.setProperty(u"checked", False)
         self.indicatorLabel.setProperty(u"on_color", QColor(255, 0, 0))
@@ -366,7 +353,7 @@ class Ui_MainWindow(object):
         self.m1Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m1Button.sizePolicy().hasHeightForWidth())
         self.m1Button.setSizePolicy(sizePolicy)
-        self.m1Button.setFont(font2)
+        self.m1Button.setFont(font3)
         self.m1Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
@@ -401,7 +388,7 @@ class Ui_MainWindow(object):
         self.m2Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m2Button.sizePolicy().hasHeightForWidth())
         self.m2Button.setSizePolicy(sizePolicy)
-        self.m2Button.setFont(font2)
+        self.m2Button.setFont(font3)
         self.m2Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
@@ -436,7 +423,7 @@ class Ui_MainWindow(object):
         self.m3Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m3Button.sizePolicy().hasHeightForWidth())
         self.m3Button.setSizePolicy(sizePolicy)
-        self.m3Button.setFont(font2)
+        self.m3Button.setFont(font3)
         self.m3Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
@@ -471,7 +458,7 @@ class Ui_MainWindow(object):
         self.m4Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m4Button.sizePolicy().hasHeightForWidth())
         self.m4Button.setSizePolicy(sizePolicy)
-        self.m4Button.setFont(font2)
+        self.m4Button.setFont(font3)
         self.m4Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
@@ -506,7 +493,7 @@ class Ui_MainWindow(object):
         self.m5Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m5Button.sizePolicy().hasHeightForWidth())
         self.m5Button.setSizePolicy(sizePolicy)
-        self.m5Button.setFont(font2)
+        self.m5Button.setFont(font3)
         self.m5Button.setAutoFillBackground(False)
         self.m5Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
@@ -545,7 +532,7 @@ class Ui_MainWindow(object):
         self.saveButton.setEnabled(False)
         sizePolicy.setHeightForWidth(self.saveButton.sizePolicy().hasHeightForWidth())
         self.saveButton.setSizePolicy(sizePolicy)
-        self.saveButton.setFont(font2)
+        self.saveButton.setFont(font3)
         self.saveButton.setAutoFillBackground(False)
         self.saveButton.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
@@ -609,7 +596,7 @@ class Ui_MainWindow(object):
         self.manufacturerLabel.setObjectName(u"manufacturerLabel")
         sizePolicy2.setHeightForWidth(self.manufacturerLabel.sizePolicy().hasHeightForWidth())
         self.manufacturerLabel.setSizePolicy(sizePolicy2)
-        self.manufacturerLabel.setFont(font2)
+        self.manufacturerLabel.setFont(font3)
         self.manufacturerLabel.setTextFormat(Qt.TextFormat.PlainText)
         self.manufacturerLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -619,7 +606,7 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName(u"label_5")
         sizePolicy2.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy2)
-        self.label_5.setFont(font2)
+        self.label_5.setFont(font3)
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_9.addWidget(self.label_5)
@@ -660,7 +647,7 @@ class Ui_MainWindow(object):
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.voltageLimitLabel.sizePolicy().hasHeightForWidth())
         self.voltageLimitLabel.setSizePolicy(sizePolicy4)
-        self.voltageLimitLabel.setFont(font1)
+        self.voltageLimitLabel.setFont(font2)
         self.voltageLimitLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.voltageLimitLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.voltageLimitLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -669,7 +656,7 @@ class Ui_MainWindow(object):
 
         self.currentLimitLabel = LcdLabel(self.verticalFrame)
         self.currentLimitLabel.setObjectName(u"currentLimitLabel")
-        self.currentLimitLabel.setFont(font1)
+        self.currentLimitLabel.setFont(font2)
         self.currentLimitLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.currentLimitLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.currentLimitLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -678,7 +665,7 @@ class Ui_MainWindow(object):
 
         self.powerLimitLabel = LcdLabel(self.verticalFrame)
         self.powerLimitLabel.setObjectName(u"powerLimitLabel")
-        self.powerLimitLabel.setFont(font1)
+        self.powerLimitLabel.setFont(font2)
         self.powerLimitLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.powerLimitLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.powerLimitLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -700,11 +687,11 @@ class Ui_MainWindow(object):
         palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.label_4.setPalette(palette10)
-        font3 = QFont()
-        font3.setFamilies([u"Segoe UI"])
-        font3.setPointSize(32)
-        font3.setBold(True)
-        self.label_4.setFont(font3)
+        font4 = QFont()
+        font4.setFamilies([u"Segoe UI"])
+        font4.setPointSize(32)
+        font4.setBold(True)
+        self.label_4.setFont(font4)
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_4)
@@ -717,7 +704,7 @@ class Ui_MainWindow(object):
         palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.label_3.setPalette(palette11)
-        self.label_3.setFont(font3)
+        self.label_3.setFont(font4)
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_3)
@@ -730,7 +717,7 @@ class Ui_MainWindow(object):
         palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.label_6.setPalette(palette12)
-        self.label_6.setFont(font3)
+        self.label_6.setFont(font4)
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_6)
@@ -768,8 +755,8 @@ class Ui_MainWindow(object):
         self.ovpButton = QPushButton(self.centralwidget)
         self.ovpButton.setObjectName(u"ovpButton")
         self.ovpButton.setEnabled(False)
-        icon3 = QIcon(QIcon.fromTheme(u"dialog-warning"))
-        self.ovpButton.setIcon(icon3)
+        icon1 = QIcon(QIcon.fromTheme(u"dialog-warning"))
+        self.ovpButton.setIcon(icon1)
         self.ovpButton.setCheckable(True)
 
         self.controlsLayout.addWidget(self.ovpButton)
@@ -777,7 +764,7 @@ class Ui_MainWindow(object):
         self.ocpButton = QPushButton(self.centralwidget)
         self.ocpButton.setObjectName(u"ocpButton")
         self.ocpButton.setEnabled(False)
-        self.ocpButton.setIcon(icon3)
+        self.ocpButton.setIcon(icon1)
         self.ocpButton.setCheckable(True)
 
         self.controlsLayout.addWidget(self.ocpButton)
@@ -785,8 +772,8 @@ class Ui_MainWindow(object):
         self.powerButton = QPushButton(self.centralwidget)
         self.powerButton.setObjectName(u"powerButton")
         self.powerButton.setEnabled(False)
-        icon4 = QIcon(QIcon.fromTheme(u"system-shutdown"))
-        self.powerButton.setIcon(icon4)
+        icon2 = QIcon(QIcon.fromTheme(u"system-shutdown"))
+        self.powerButton.setIcon(icon2)
         self.powerButton.setCheckable(True)
         self.powerButton.setChecked(False)
 
@@ -804,13 +791,23 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QRect(0, 0, 623, 33))
         self.menuView = QMenu(self.menubar)
         self.menuView.setObjectName(u"menuView")
+        self.menuFile = QMenu(self.menubar)
+        self.menuFile.setObjectName(u"menuFile")
+        self.menuHelp = QMenu(self.menubar)
+        self.menuHelp.setObjectName(u"menuHelp")
         MainWindow.setMenuBar(self.menubar)
 
+        self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuView.menuAction())
+        self.menubar.addAction(self.menuHelp.menuAction())
         self.menuView.addAction(self.actionM_buttons)
+        self.menuFile.addAction(self.actionPreferences)
+        self.menuFile.addAction(self.actionQuit)
+        self.menuHelp.addAction(self.actionAbout)
 
         self.retranslateUi(MainWindow)
         self.actionM_buttons.toggled.connect(self.memoryButtonWidget.setVisible)
+        self.actionQuit.triggered.connect(MainWindow.close)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -818,17 +815,14 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"PSUcontrol", None))
         self.actionM_buttons.setText(QCoreApplication.translate("MainWindow", u"Show PSU memory slot controls", None))
+        self.actionPreferences.setText(QCoreApplication.translate("MainWindow", u"Preferences", None))
+        self.actionQuit.setText(QCoreApplication.translate("MainWindow", u"Quit", None))
+#if QT_CONFIG(shortcut)
+        self.actionQuit.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", None))
+#endif // QT_CONFIG(shortcut)
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Port:", None))
         self.connectButton.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
-#if QT_CONFIG(tooltip)
-        self.preferencesButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Preferences</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.preferencesButton.setText("")
-#if QT_CONFIG(tooltip)
-        self.aboutButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>About</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.aboutButton.setText("")
         self.voltageOutputLabel.setProperty(u"text", "")
         self.voltageOutputLabel.setProperty(u"backgroundText", QCoreApplication.translate("MainWindow", u"88.88", None))
         self.currentOutputLabel.setProperty(u"text", "")
@@ -865,5 +859,7 @@ class Ui_MainWindow(object):
         self.ocpButton.setText(QCoreApplication.translate("MainWindow", u"OCP", None))
         self.powerButton.setText(QCoreApplication.translate("MainWindow", u"POWER", None))
         self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"View", None))
+        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
+        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
     # retranslateUi
 

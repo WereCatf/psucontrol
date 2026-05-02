@@ -89,8 +89,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.ovpButton.clicked.connect(self.ovpButtonHandler)
 
         self.ui.serialPortBox.currentTextChanged.connect(self.serialPortBoxChanged)
-        self.ui.preferencesButton.clicked.connect(self.preferencesDialogButtonHandler)
-        self.ui.aboutButton.clicked.connect(self.aboutDialogHandler)
+        self.ui.actionPreferences.triggered.connect(self.preferencesDialogButtonHandler)
+        self.ui.actionAbout.triggered.connect(self.aboutDialogHandler)
 
         self.psuWorker.psuError.connect(self.errorDialogHandler)
         """

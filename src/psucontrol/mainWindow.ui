@@ -114,44 +114,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="preferencesButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Preferences&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="document-properties"/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="aboutButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;About&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset theme="dialog-information"/>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
       <item>
@@ -2233,7 +2195,22 @@ background-color: #a6a99f;
     </property>
     <addaction name="actionM_buttons"/>
    </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionPreferences"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
    <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
   </widget>
   <action name="actionM_buttons">
    <property name="checkable">
@@ -2246,9 +2223,20 @@ background-color: #a6a99f;
     <string>Show PSU memory slot controls</string>
    </property>
    <property name="font">
-    <font>
-     <family>Segoe UI</family>
-    </font>
+    <font/>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -2286,6 +2274,22 @@ background-color: #a6a99f;
     <hint type="destinationlabel">
      <x>549</x>
      <y>789</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>311</x>
+     <y>224</y>
     </hint>
    </hints>
   </connection>
