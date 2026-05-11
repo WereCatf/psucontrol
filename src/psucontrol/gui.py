@@ -135,13 +135,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self._adjustTimer.timeout.connect(self.adjustSize)
         self._adjustTimer.start()
 
-    def mButtonHandler(self, button: QtWidgets.QPushButton):
+    def mButtonHandler(self):
         if not self.psuWorker.connected:
             return
+        button = self.sender()
         memorySlot = int(button.text()[1])
         if not self.ui.saveButton.isChecked():
             self.settingsChange.emit("recall", memorySlot)
         else:
+            self.settingsChange.emit("recall", memorySlot)
             self.settingsChange.emit("save", memorySlot)
             self.ui.saveButton.setChecked(False)
 
