@@ -19,6 +19,7 @@ from xdg_base_dirs import xdg_config_home
 import json
 from indicatorlabel import IndicatorLabel  # noqa: F401
 from lcdlabel import LcdLabel  # noqa: F401
+from PySide6.QtGui import QGuiApplication
 
 
 def readConfig():
@@ -640,6 +641,7 @@ def main(argv: list[str] | None = None):
     configData = readConfig()
 
     app = QtWidgets.QApplication(argv)
+    QGuiApplication.styleHints().setColorScheme(Qt.ColorScheme.Dark)
 
     window = MainWindow(configData, simulate)
     window.show()
