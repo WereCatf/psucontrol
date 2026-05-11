@@ -33,6 +33,7 @@ class PsuDevice:
         self._idn = ""
         self._maximumVoltage = 30.0
         self._maximumCurrent = 5.0
+        self._lockBitIsOcp = False
 
     def connect(self):
         self._connection.open()
@@ -53,6 +54,10 @@ class PsuDevice:
             raise RuntimeError(
                 "Reply from PSU did not match expected format, not a supported device!"
             )
+        if self._manufacturer == "VELLEMAN" and self._model.startswith("LABPS"):
+            self._lockBitIsOcp = True
+        else:
+            self._lockBitIsOcp = False
 
     def isConnected(self):
         return self._connection.is_open
@@ -162,8 +167,10 @@ class PsuDevice:
             if statusBits & (0x03 << 2) == 1
             else TrackingMode.PARALLEL,
             "beep": bool(statusBits & (0x01 << 4)),
-            "lock": not bool(statusBits & (0x01 << 5)),
+            "lock": True if self._lockBitIsOcp else not bool(statusBits & (0x01 << 5)),
+            "ocp": bool(statusBits & (0x01 << 5)) if self._lockBitIsOcp else False,
             "output": bool(statusBits & (0x01 << 6)),
+            "ovp": bool(statusBits & (0x01 << 7)),
         }
 
     @property
@@ -253,14 +260,7 @@ class PsuDevice:
     @output.setter
     def output(self, enable: bool):
         """Enable or disable the PSU's output."""
-        retries = 0
-        while retries < 5:
-            self._sendCommand(f"OUT{'1' if enable else '0'}", singleShot=True)
-            if self.output == enable:
-                return
-            retries += 1
-        errorString = f"OutputSetter: Failed to set output to {enable} after 5 attempts"
-        raise ValueError(errorString)
+        self._sendCommand(f"OUT{'1' if enable else '0'}", singleShot=True)
 
     def setOutput(self, enable: bool):
         """Enable or disable the PSU's output."""
@@ -268,23 +268,11 @@ class PsuDevice:
 
     def setOCP(self, enable: bool):
         """Enable or disable overcurrent protection."""
-        retries = 0
-        while retries < 5:
-            self._sendCommand(f"OCP{'1' if enable else '0'}", singleShot=True)
-            if self.output == enable:
-                return
-            retries += 1
-        raise ValueError(f"Failed to set OCP to {enable} after 5 attempts")
+        self._sendCommand(f"OCP{'1' if enable else '0'}", singleShot=True)
 
     def setOVP(self, enable: bool):
         """Enable or disable overvoltage protection."""
-        retries = 0
-        while retries < 5:
-            self._sendCommand(f"OVP{'1' if enable else '0'}", singleShot=True)
-            if self.output == enable:
-                return
-            retries += 1
-        raise ValueError(f"Failed to set OVP to {enable} after 5 attempts")
+        self._sendCommand(f"OVP{'1' if enable else '0'}", singleShot=True)
 
     def _sendCommand(
         self,
@@ -292,7 +280,7 @@ class PsuDevice:
         replyLength: int | None = None,
         singleShot: bool = False,
         waitTime: float = 0.0,
-    ) -> str:
+    ) -> str | bytes:
         if not self.isConnected():
             raise ConnectionError(
                 f"Cannot issue command '{command}', not connected to PSU!"
@@ -306,7 +294,11 @@ class PsuDevice:
                 if not waitTime:
                     time.sleep(0.045)
                 return ""
-            response = self._connection.read_until(size=replyLength).decode()
+            response = (
+                self._connection.read_until(size=replyLength).decode()
+                if command != "STATUS?"
+                else self._connection.read_until(size=replyLength)
+            )
             if len(response) and (not replyLength or len(response) == replyLength):
                 return response
             retries += 1
