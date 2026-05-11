@@ -25,6 +25,9 @@ class Ui_ErrorDialog(object):
         if not ErrorDialog.objectName():
             ErrorDialog.setObjectName(u"ErrorDialog")
         ErrorDialog.resize(561, 439)
+        font = QFont()
+        font.setFamilies([u"Noto Sans"])
+        ErrorDialog.setFont(font)
         ErrorDialog.setModal(True)
         self.verticalLayout = QVBoxLayout(ErrorDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")

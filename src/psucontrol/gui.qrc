@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="fonts">
+    <file alias="NotoSans.ttf">resources/NotoSans.ttf</file>
     <file alias="7seg.ttf">resources/DSEG7ClassicMini-Bold.ttf</file>
     <file alias="14seg.ttf">resources/DSEG14ClassicMini-Bold.ttf</file>
   </qresource>

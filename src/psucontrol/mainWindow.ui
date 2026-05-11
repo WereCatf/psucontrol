@@ -18,7 +18,7 @@
   </property>
   <property name="font">
    <font>
-    <family>Andale Mono</family>
+    <family>Noto Sans</family>
    </font>
   </property>
   <property name="acceptDrops">
@@ -37,11 +37,6 @@
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <family>Segoe UI</family>
-    </font>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <property name="spacing">
@@ -181,11 +176,6 @@
            </colorrole>
           </disabled>
          </palette>
-        </property>
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-         </font>
         </property>
         <property name="autoFillBackground">
          <bool>true</bool>
@@ -549,11 +539,6 @@ background-color: #a6a99f;
              </disabled>
             </palette>
            </property>
-           <property name="font">
-            <font>
-             <family>Segoe UI</family>
-            </font>
-           </property>
            <property name="autoFillBackground">
             <bool>true</bool>
            </property>
@@ -583,7 +568,7 @@ background-color: #a6a99f;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -612,7 +597,7 @@ background-color: #a6a99f;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -697,7 +682,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>12</pointsize>
                <bold>true</bold>
               </font>
@@ -788,7 +773,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>12</pointsize>
                <bold>true</bold>
               </font>
@@ -876,7 +861,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>12</pointsize>
                <bold>true</bold>
               </font>
@@ -964,7 +949,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>12</pointsize>
                <bold>true</bold>
               </font>
@@ -1052,7 +1037,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>12</pointsize>
                <bold>true</bold>
               </font>
@@ -1094,11 +1079,6 @@ background-color: #a6a99f;
              <width>0</width>
              <height>50</height>
             </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Segoe UI</family>
-            </font>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <property name="spacing">
@@ -1275,7 +1255,7 @@ background-color: #a6a99f;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -1477,7 +1457,7 @@ color: black;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -1679,7 +1659,7 @@ color: black;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -1881,7 +1861,7 @@ color: black;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -2083,7 +2063,7 @@ color: black;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -2300,7 +2280,7 @@ color: black;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -2504,7 +2484,7 @@ color: black;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -2530,7 +2510,7 @@ color: black;
               </property>
               <property name="font">
                <font>
-                <family>Segoe UI</family>
+                <family>Noto Sans</family>
                 <pointsize>12</pointsize>
                 <bold>true</bold>
                </font>
@@ -2841,7 +2821,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>32</pointsize>
                <bold>true</bold>
               </font>
@@ -2903,7 +2883,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>32</pointsize>
                <bold>true</bold>
               </font>
@@ -2965,7 +2945,7 @@ background-color: #a6a99f;
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI</family>
+               <family>Noto Sans</family>
                <pointsize>32</pointsize>
                <bold>true</bold>
               </font>
@@ -3096,7 +3076,7 @@ background-color: #a6a99f;
      <x>0</x>
      <y>0</y>
      <width>605</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuView">
@@ -3133,17 +3113,29 @@ background-color: #a6a99f;
     <string>Show PSU memory slot controls</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <family>Noto Sans</family>
+    </font>
    </property>
   </action>
   <action name="actionPreferences">
    <property name="text">
     <string>Preferences</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+    </font>
+   </property>
   </action>
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -3152,6 +3144,11 @@ background-color: #a6a99f;
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans</family>
+    </font>
    </property>
   </action>
  </widget>

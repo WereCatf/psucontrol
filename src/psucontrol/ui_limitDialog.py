@@ -24,6 +24,9 @@ class Ui_LimitDialog(object):
         if not LimitDialog.objectName():
             LimitDialog.setObjectName(u"LimitDialog")
         LimitDialog.resize(539, 76)
+        font = QFont()
+        font.setFamilies([u"Noto Sans"])
+        LimitDialog.setFont(font)
         LimitDialog.setModal(True)
         self.verticalLayout = QVBoxLayout(LimitDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")

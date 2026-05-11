@@ -68,3 +68,4 @@ poetry install
 ## License
 
 This project is licensed under the BSD 3-Clause License - see the [LICENSE](LICENSE) file for details.
+The project uses the Noto Sans-font - see the [LICENSE](OFL.txt) file for details.

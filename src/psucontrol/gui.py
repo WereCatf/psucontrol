@@ -58,6 +58,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         QtGui.QFontDatabase.addApplicationFont(":/fonts/7seg.ttf")
         QtGui.QFontDatabase.addApplicationFont(":/fonts/14seg.ttf")
+        QtGui.QFontDatabase.addApplicationFont(":/fonts/NotoSans.ttf")
         serial_port_info = QtSerialPort.QSerialPortInfo()
         available_ports = configData["customSerialPorts"] + [
             port.portName() if os.name == "nt" else port.systemLocation()

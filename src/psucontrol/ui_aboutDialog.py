@@ -25,6 +25,9 @@ class Ui_AboutDialog(object):
         if not AboutDialog.objectName():
             AboutDialog.setObjectName(u"AboutDialog")
         AboutDialog.resize(400, 300)
+        font = QFont()
+        font.setFamilies([u"Noto Sans"])
+        AboutDialog.setFont(font)
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DialogInformation))
         AboutDialog.setWindowIcon(icon)
         AboutDialog.setModal(True)
@@ -80,11 +83,11 @@ class Ui_AboutDialog(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PSUcontrol, an application for controlling the Velleman LABPS3005D and compatible bench power supplies.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Source code available at <a href=\"https://github.com/WereCatf/psucontrol\"><span style=\" text-decoration: underline; color:#ff95ca;\">https://github.com/WereCatf/psucont"
-                        "rol</span></a></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright(C)2026 Nita Vesa</p></body></html>", None))
+"</style></head><body style=\" font-family:'Noto Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI';\">PSUcontrol, an application for controlling the Velleman LABPS3005D and compatible bench power supplies.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI';\">Source code available at </span><a href=\"https://github.com/WereCatf/psucontrol\""
+                        "><span style=\" font-family:'Segoe UI'; text-decoration: underline; color:#ff95ca;\">https://github.com/WereCatf/psucontrol</span></a></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI';\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI';\">Copyright(C)2026 Nita Vesa</span></p></body></html>", None))
     # retranslateUi
 
