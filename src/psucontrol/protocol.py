@@ -292,7 +292,7 @@ class PsuDevice:
                 time.sleep(waitTime)
             if singleShot:
                 if not waitTime:
-                    time.sleep(0.045)
+                    time.sleep(0.08)
                 return ""
             response = (
                 self._connection.read_until(size=replyLength).decode()
