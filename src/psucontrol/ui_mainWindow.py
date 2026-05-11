@@ -29,14 +29,14 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(623, 450)
+        MainWindow.resize(605, 419)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         font = QFont()
-        font.setFamilies([u"Segoe UI"])
+        font.setFamilies([u"Andale Mono"])
         MainWindow.setFont(font)
         MainWindow.setAcceptDrops(False)
         icon = QIcon()
@@ -58,7 +58,9 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
-        self.centralwidget.setFont(font)
+        font2 = QFont()
+        font2.setFamilies([u"Segoe UI"])
+        self.centralwidget.setFont(font2)
         self.verticalLayout_4 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
@@ -107,7 +109,8 @@ class Ui_MainWindow(object):
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush)
         self.frame_5.setPalette(palette)
-        self.frame_5.setFont(font)
+        self.frame_5.setFont(font2)
+        self.frame_5.setAutoFillBackground(True)
         self.frame_5.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Shadow.Plain)
         self.frame_5.setLineWidth(0)
@@ -146,11 +149,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
         self.voltageOutputLabel = LcdLabel(self.verticalFrame_2)
         self.voltageOutputLabel.setObjectName(u"voltageOutputLabel")
-        font2 = QFont()
-        font2.setFamilies([u"DSEG7 Classic Mini"])
-        font2.setPointSize(32)
-        font2.setBold(True)
-        self.voltageOutputLabel.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"DSEG7 Classic Mini"])
+        font3.setPointSize(32)
+        font3.setBold(True)
+        self.voltageOutputLabel.setFont(font3)
         self.voltageOutputLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.voltageOutputLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.voltageOutputLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -159,7 +162,7 @@ class Ui_MainWindow(object):
 
         self.currentOutputLabel = LcdLabel(self.verticalFrame_2)
         self.currentOutputLabel.setObjectName(u"currentOutputLabel")
-        self.currentOutputLabel.setFont(font2)
+        self.currentOutputLabel.setFont(font3)
         self.currentOutputLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.currentOutputLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.currentOutputLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -168,7 +171,7 @@ class Ui_MainWindow(object):
 
         self.powerOutputLabel = LcdLabel(self.verticalFrame_2)
         self.powerOutputLabel.setObjectName(u"powerOutputLabel")
-        self.powerOutputLabel.setFont(font2)
+        self.powerOutputLabel.setFont(font3)
         self.powerOutputLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.powerOutputLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.powerOutputLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -192,7 +195,7 @@ class Ui_MainWindow(object):
         palette2.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush1)
         palette2.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush1)
         self.frame_3.setPalette(palette2)
-        self.frame_3.setFont(font)
+        self.frame_3.setFont(font2)
         self.frame_3.setAutoFillBackground(True)
         self.verticalLayout_10 = QVBoxLayout(self.frame_3)
         self.verticalLayout_10.setSpacing(0)
@@ -205,11 +208,11 @@ class Ui_MainWindow(object):
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.modelLabel.sizePolicy().hasHeightForWidth())
         self.modelLabel.setSizePolicy(sizePolicy2)
-        font3 = QFont()
-        font3.setFamilies([u"Segoe UI"])
-        font3.setPointSize(12)
-        font3.setBold(True)
-        self.modelLabel.setFont(font3)
+        font4 = QFont()
+        font4.setFamilies([u"Segoe UI"])
+        font4.setPointSize(12)
+        font4.setBold(True)
+        self.modelLabel.setFont(font4)
         self.modelLabel.setTextFormat(Qt.TextFormat.PlainText)
         self.modelLabel.setScaledContents(False)
         self.modelLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -220,7 +223,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName(u"label")
         sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy2)
-        self.label.setFont(font3)
+        self.label.setFont(font4)
         self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.label)
@@ -248,7 +251,7 @@ class Ui_MainWindow(object):
         palette3.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette3.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorOvp.setPalette(palette3)
-        self.indicatorOvp.setFont(font3)
+        self.indicatorOvp.setFont(font4)
         self.indicatorOvp.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.indicatorOvp.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
         self.indicatorOvp.setProperty(u"checked", False)
@@ -268,7 +271,7 @@ class Ui_MainWindow(object):
         palette4.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette4.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorOcp.setPalette(palette4)
-        self.indicatorOcp.setFont(font3)
+        self.indicatorOcp.setFont(font4)
         self.indicatorOcp.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorOcp.setProperty(u"checked", False)
         self.indicatorOcp.setProperty(u"on_color", QColor(255, 0, 0))
@@ -287,7 +290,7 @@ class Ui_MainWindow(object):
         palette5.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette5.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorCc.setPalette(palette5)
-        self.indicatorCc.setFont(font3)
+        self.indicatorCc.setFont(font4)
         self.indicatorCc.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorCc.setProperty(u"checked", False)
         self.indicatorCc.setProperty(u"on_color", QColor(255, 0, 0))
@@ -306,7 +309,7 @@ class Ui_MainWindow(object):
         palette6.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette6.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorCv.setPalette(palette6)
-        self.indicatorCv.setFont(font3)
+        self.indicatorCv.setFont(font4)
         self.indicatorCv.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorCv.setProperty(u"checked", False)
         self.indicatorCv.setProperty(u"on_color", QColor(255, 0, 0))
@@ -325,7 +328,7 @@ class Ui_MainWindow(object):
         palette7.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
         palette7.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
         self.indicatorLabel.setPalette(palette7)
-        self.indicatorLabel.setFont(font3)
+        self.indicatorLabel.setFont(font4)
         self.indicatorLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignLeading)
         self.indicatorLabel.setProperty(u"checked", False)
         self.indicatorLabel.setProperty(u"on_color", QColor(255, 0, 0))
@@ -340,7 +343,7 @@ class Ui_MainWindow(object):
         self.memoryButtonWidget = QWidget(self.frame_5)
         self.memoryButtonWidget.setObjectName(u"memoryButtonWidget")
         self.memoryButtonWidget.setMinimumSize(QSize(0, 50))
-        self.memoryButtonWidget.setFont(font)
+        self.memoryButtonWidget.setFont(font2)
         self.horizontalLayout = QHBoxLayout(self.memoryButtonWidget)
         self.horizontalLayout.setSpacing(9)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -353,10 +356,37 @@ class Ui_MainWindow(object):
         self.m1Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m1Button.sizePolicy().hasHeightForWidth())
         self.m1Button.setSizePolicy(sizePolicy)
-        self.m1Button.setFont(font3)
+        palette8 = QPalette()
+        brush3 = QBrush(QColor(70, 70, 70, 255))
+        brush3.setStyle(Qt.BrushStyle.SolidPattern)
+        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush3)
+        brush4 = QBrush(QColor(157, 157, 157, 255))
+        brush4.setStyle(Qt.BrushStyle.SolidPattern)
+        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Dark, brush4)
+        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush3)
+        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush3)
+        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush3)
+        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Dark, brush4)
+        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush3)
+        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush3)
+        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush4)
+        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush3)
+        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Dark, brush4)
+        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush4)
+        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush4)
+        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush3)
+        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush3)
+        self.m1Button.setPalette(palette8)
+        self.m1Button.setFont(font4)
         self.m1Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
+"border-radius: 2px;\n"
+"border: 1px double #565656;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"background-color: rgb(70, 70, 70);\n"
 "}\n"
 "\n"
 "QPushButton:checked {\n"
@@ -388,10 +418,33 @@ class Ui_MainWindow(object):
         self.m2Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m2Button.sizePolicy().hasHeightForWidth())
         self.m2Button.setSizePolicy(sizePolicy)
-        self.m2Button.setFont(font3)
+        palette9 = QPalette()
+        palette9.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Dark, brush4)
+        palette9.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Dark, brush4)
+        palette9.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush4)
+        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Dark, brush4)
+        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush4)
+        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush4)
+        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush3)
+        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush3)
+        self.m2Button.setPalette(palette9)
+        self.m2Button.setFont(font4)
         self.m2Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
+"border-radius: 2px;\n"
+"border: 1px double #565656;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"background-color: rgb(70, 70, 70);\n"
 "}\n"
 "\n"
 "QPushButton:checked {\n"
@@ -423,10 +476,33 @@ class Ui_MainWindow(object):
         self.m3Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m3Button.sizePolicy().hasHeightForWidth())
         self.m3Button.setSizePolicy(sizePolicy)
-        self.m3Button.setFont(font3)
+        palette10 = QPalette()
+        palette10.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Dark, brush4)
+        palette10.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Dark, brush4)
+        palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush4)
+        palette10.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Dark, brush4)
+        palette10.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush4)
+        palette10.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush4)
+        palette10.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush3)
+        palette10.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush3)
+        self.m3Button.setPalette(palette10)
+        self.m3Button.setFont(font4)
         self.m3Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
+"border-radius: 2px;\n"
+"border: 1px double #565656;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"background-color: rgb(70, 70, 70);\n"
 "}\n"
 "\n"
 "QPushButton:checked {\n"
@@ -458,10 +534,33 @@ class Ui_MainWindow(object):
         self.m4Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m4Button.sizePolicy().hasHeightForWidth())
         self.m4Button.setSizePolicy(sizePolicy)
-        self.m4Button.setFont(font3)
+        palette11 = QPalette()
+        palette11.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Dark, brush4)
+        palette11.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Dark, brush4)
+        palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush4)
+        palette11.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Dark, brush4)
+        palette11.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush4)
+        palette11.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush4)
+        palette11.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush3)
+        palette11.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush3)
+        self.m4Button.setPalette(palette11)
+        self.m4Button.setFont(font4)
         self.m4Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
+"border-radius: 2px;\n"
+"border: 1px double #565656;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"background-color: rgb(70, 70, 70);\n"
 "}\n"
 "\n"
 "QPushButton:checked {\n"
@@ -493,11 +592,34 @@ class Ui_MainWindow(object):
         self.m5Button.setEnabled(False)
         sizePolicy.setHeightForWidth(self.m5Button.sizePolicy().hasHeightForWidth())
         self.m5Button.setSizePolicy(sizePolicy)
-        self.m5Button.setFont(font3)
+        palette12 = QPalette()
+        palette12.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Dark, brush4)
+        palette12.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Dark, brush4)
+        palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush4)
+        palette12.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Dark, brush4)
+        palette12.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush4)
+        palette12.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush4)
+        palette12.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush3)
+        palette12.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush3)
+        self.m5Button.setPalette(palette12)
+        self.m5Button.setFont(font4)
         self.m5Button.setAutoFillBackground(False)
         self.m5Button.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
+"border-radius: 2px;\n"
+"border: 1px double #565656;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"background-color: rgb(70, 70, 70);\n"
 "}\n"
 "\n"
 "QPushButton:checked {\n"
@@ -532,16 +654,40 @@ class Ui_MainWindow(object):
         self.saveButton.setEnabled(False)
         sizePolicy.setHeightForWidth(self.saveButton.sizePolicy().hasHeightForWidth())
         self.saveButton.setSizePolicy(sizePolicy)
-        self.saveButton.setFont(font3)
+        palette13 = QPalette()
+        palette13.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Dark, brush4)
+        palette13.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Dark, brush4)
+        palette13.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush4)
+        palette13.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Dark, brush4)
+        palette13.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush4)
+        palette13.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush4)
+        palette13.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush3)
+        palette13.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush3)
+        self.saveButton.setPalette(palette13)
+        self.saveButton.setFont(font4)
         self.saveButton.setAutoFillBackground(False)
         self.saveButton.setStyleSheet(u"QPushButton {\n"
 "background-color: rgb(70, 70, 70);\n"
 "padding: 9px;\n"
+"border-radius: 2px;\n"
+"border: 1px double #565656;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"background-color: rgb(70, 70, 70);\n"
 "}\n"
 "\n"
 "QPushButton:checked {\n"
 "background-color: red;\n"
 "color: black;\n"
+"border: 1px double #ff1010;\n"
 "}\n"
 "\n"
 "QPushButton:hover:checked {\n"
@@ -573,18 +719,18 @@ class Ui_MainWindow(object):
 
         self.frame = QFrame(self.frame_5)
         self.frame.setObjectName(u"frame")
-        palette8 = QPalette()
-        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush)
-        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush)
-        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush1)
-        palette8.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush1)
-        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush)
-        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush)
-        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush1)
-        palette8.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush1)
-        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush1)
-        palette8.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush1)
-        self.frame.setPalette(palette8)
+        palette14 = QPalette()
+        palette14.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush)
+        palette14.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush)
+        palette14.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush1)
+        palette14.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush1)
+        palette14.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush)
+        palette14.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush)
+        palette14.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush1)
+        palette14.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush1)
+        palette14.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush1)
+        palette14.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush1)
+        self.frame.setPalette(palette14)
         self.frame.setAutoFillBackground(True)
         self.frame.setFrameShape(QFrame.Shape.NoFrame)
         self.frame.setLineWidth(0)
@@ -596,7 +742,7 @@ class Ui_MainWindow(object):
         self.manufacturerLabel.setObjectName(u"manufacturerLabel")
         sizePolicy2.setHeightForWidth(self.manufacturerLabel.sizePolicy().hasHeightForWidth())
         self.manufacturerLabel.setSizePolicy(sizePolicy2)
-        self.manufacturerLabel.setFont(font3)
+        self.manufacturerLabel.setFont(font4)
         self.manufacturerLabel.setTextFormat(Qt.TextFormat.PlainText)
         self.manufacturerLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
@@ -606,7 +752,7 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName(u"label_5")
         sizePolicy2.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy2)
-        self.label_5.setFont(font3)
+        self.label_5.setFont(font4)
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_9.addWidget(self.label_5)
@@ -616,17 +762,17 @@ class Ui_MainWindow(object):
 
         self.verticalFrame = QFrame(self.frame_5)
         self.verticalFrame.setObjectName(u"verticalFrame")
-        palette9 = QPalette()
-        palette9.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush1)
-        palette9.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush1)
-        self.verticalFrame.setPalette(palette9)
+        palette15 = QPalette()
+        palette15.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Button, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush1)
+        palette15.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush1)
+        self.verticalFrame.setPalette(palette15)
         self.verticalFrame.setAutoFillBackground(False)
         self.verticalFrame.setStyleSheet(u"QFrame#verticalFrame {\n"
 "     border-right: 1px solid black;\n"
@@ -647,7 +793,7 @@ class Ui_MainWindow(object):
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.voltageLimitLabel.sizePolicy().hasHeightForWidth())
         self.voltageLimitLabel.setSizePolicy(sizePolicy4)
-        self.voltageLimitLabel.setFont(font2)
+        self.voltageLimitLabel.setFont(font3)
         self.voltageLimitLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.voltageLimitLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.voltageLimitLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -656,7 +802,7 @@ class Ui_MainWindow(object):
 
         self.currentLimitLabel = LcdLabel(self.verticalFrame)
         self.currentLimitLabel.setObjectName(u"currentLimitLabel")
-        self.currentLimitLabel.setFont(font2)
+        self.currentLimitLabel.setFont(font3)
         self.currentLimitLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.currentLimitLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.currentLimitLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -665,7 +811,7 @@ class Ui_MainWindow(object):
 
         self.powerLimitLabel = LcdLabel(self.verticalFrame)
         self.powerLimitLabel.setObjectName(u"powerLimitLabel")
-        self.powerLimitLabel.setFont(font2)
+        self.powerLimitLabel.setFont(font3)
         self.powerLimitLabel.setProperty(u"alignment", Qt.AlignmentFlag.AlignCenter)
         self.powerLimitLabel.setProperty(u"foregroundColor", QColor(0, 0, 0))
         self.powerLimitLabel.setProperty(u"backgroundColor", QColor(156, 159, 159))
@@ -681,43 +827,43 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setContentsMargins(12, -1, 12, -1)
         self.label_4 = QLabel(self.frame_5)
         self.label_4.setObjectName(u"label_4")
-        palette10 = QPalette()
-        palette10.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush2)
-        palette10.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush2)
-        palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
-        palette10.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
-        self.label_4.setPalette(palette10)
-        font4 = QFont()
-        font4.setFamilies([u"Segoe UI"])
-        font4.setPointSize(32)
-        font4.setBold(True)
-        self.label_4.setFont(font4)
+        palette16 = QPalette()
+        palette16.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush2)
+        palette16.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush2)
+        palette16.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
+        palette16.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
+        self.label_4.setPalette(palette16)
+        font5 = QFont()
+        font5.setFamilies([u"Segoe UI"])
+        font5.setPointSize(32)
+        font5.setBold(True)
+        self.label_4.setFont(font5)
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_4)
 
         self.label_3 = QLabel(self.frame_5)
         self.label_3.setObjectName(u"label_3")
-        palette11 = QPalette()
-        palette11.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush2)
-        palette11.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush2)
-        palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
-        palette11.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
-        self.label_3.setPalette(palette11)
-        self.label_3.setFont(font4)
+        palette17 = QPalette()
+        palette17.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush2)
+        palette17.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush2)
+        palette17.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
+        palette17.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
+        self.label_3.setPalette(palette17)
+        self.label_3.setFont(font5)
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_3)
 
         self.label_6 = QLabel(self.frame_5)
         self.label_6.setObjectName(u"label_6")
-        palette12 = QPalette()
-        palette12.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush2)
-        palette12.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush2)
-        palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
-        palette12.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
-        self.label_6.setPalette(palette12)
-        self.label_6.setFont(font4)
+        palette18 = QPalette()
+        palette18.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush2)
+        palette18.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Text, brush2)
+        palette18.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush2)
+        palette18.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush2)
+        self.label_6.setPalette(palette18)
+        self.label_6.setFont(font5)
         self.label_6.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_13.addWidget(self.label_6)
@@ -788,7 +934,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 623, 33))
+        self.menubar.setGeometry(QRect(0, 0, 605, 19))
         self.menuView = QMenu(self.menubar)
         self.menuView.setObjectName(u"menuView")
         self.menuFile = QMenu(self.menubar)
