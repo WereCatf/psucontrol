@@ -22,6 +22,17 @@ pipx install psucontrol
 
 You can also grab one of the binary releases from the Releases-section but they are rather large because they bundle an entire Python-environment inside. Do also note that the Windows Defender is practically guaranteed to falsely flag the .exe-files as containing viruses -- this is a false positive but there is really not much I can do about it.
 
+## OBSERVED QUIRKS
+
+Velleman LABPS3005D:
+
+* Toggling beeper on/off doesn't work.
+* Locking/unlocking the controls doesn't work.
+* IDN*? command returns a garbage character at the end.
+* Saving to a different memory slot than was last recalled causes it to save to a random slot instead.
+* The lock bit returned by STATUS? is actually OCP status unlike what the protocol documentation says.
+* The final 8th bit returned by STATUS? is actually OVP status unlike what the protocol documentation says.
+
 ## DEVELOPMENT
 
 Install `poetry`. I, again, recommend `pipx` for this.
